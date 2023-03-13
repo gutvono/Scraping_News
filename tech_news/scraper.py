@@ -1,11 +1,28 @@
+from typing import List
+from parsel import Selector
+import requests
+import time
+
+
 # Requisito 1
-def fetch(url):
-    """Seu código deve vir aqui"""
+def fetch(url: str) -> str:
+    time.sleep(1)
+    try:
+        response = requests.get(
+            url,
+            headers={'user-agent': 'Fake user-agent'},
+            timeout=3
+        )
+        response.raise_for_status()
+        return response.text
+    except (requests.HTTPError, requests.ReadTimeout):
+        return None
 
 
 # Requisito 2
-def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
+def scrape_updates(html_content: str) -> List[str]:
+    urls_list = Selector(html_content)
+    return urls_list.css('h2.entry-title a::attr(href)').getall()
 
 
 # Requisito 3
