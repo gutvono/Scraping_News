@@ -1,5 +1,6 @@
 from typing import List
 from parsel import Selector
+from re import findall
 import requests
 import time
 
@@ -38,12 +39,14 @@ def scrape_news(html_content):
     html = Selector(html_content)
 
     return {
-        "url": html.css('a.cs-overlay-link::attr(href)').get(),
-        "title": html.css('h1.entry-title::text').get(),
+        "url": html.css('head > link[rel=canonical]::attr(href)').get(),
+        "title": html.css('h1.entry-title::text').get().strip(),
         "timestamp": html.css('li.meta-date::text').get(),
         "writer": html.css('span.author a::text').get(),
-        "reading_time": int(html.css('li.meta-reading-time i::text').get()[0]),
-        "summary": html.css('div.entry-content p *::text').get(),
+        "reading_time": int(findall(
+            r"\d+", html.css('li.meta-reading-time::text').get())[0]),
+        "summary": ''.join(html.css(
+            ".entry-content > p:first-of-type *::text").getall()).strip(),
         "category": html.css('span.label::text').get()
     }
 
