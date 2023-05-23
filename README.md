@@ -1,6 +1,6 @@
 # Boas-vindas ao repositório do projeto `Scraping News`!
 
-🌱 O projeto tem como principal objetivo estudar raspagem de dados, utilizando Python e algumas bibliotecas como Selenium, Beautiful Soup e Parsel. Neste mini-projeto em específico, foi utilizada uma página de notícias para a realização do scraping, e o banco MongoDB para armazenamento das informações encontradas.
+🌱 O projeto tem como principal objetivo estudar _raspagem de dados_, utilizando **Python** e algumas bibliotecas como _Selenium_, _Beautiful Soup_ e _Parsel_. Neste mini-projeto em específico, foi utilizada uma página de notícias para a realização do _scraping_, e o banco **MongoDB** para armazenamento das informações encontradas.
 
 <img alt="work" src="https://miro.medium.com/v2/resize:fit:640/1*nHfayfdmxAApbg84iMrJqQ.gif" width="300px">
 
