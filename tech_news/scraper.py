@@ -6,7 +6,7 @@ import requests
 import time
 
 
-# Requisito 1
+# Faz a requisição HTTP ao site e retorna o conteúdo HTML.
 def fetch(url: str) -> str:
     time.sleep(1)
     try:
@@ -21,13 +21,13 @@ def fetch(url: str) -> str:
         return None
 
 
-# Requisito 2
+# Utiliza a biblioteca Parsel para obter as URLs das páginas.
 def scrape_updates(html_content: str) -> List[str]:
     urls_list = Selector(html_content)
     return urls_list.css('h2.entry-title a::attr(href)').getall()
 
 
-# Requisito 3
+# Obtém a URL da próxima página.
 def scrape_next_page_link(html_content: str) -> str or None:
     page_content = Selector(html_content)
     if page_content:
@@ -35,7 +35,7 @@ def scrape_next_page_link(html_content: str) -> str or None:
     return None
 
 
-# Requisito 4
+# Preenche um dicionário com as informações encontradas na página.
 def scrape_news(html_content):
     html = Selector(html_content)
 
@@ -52,7 +52,8 @@ def scrape_news(html_content):
     }
 
 
-# Requisito 5
+# Responsável por realizar o processo de scraping e armazenar o conteúdo
+# encontrado no banco de dados MongoDB
 def get_tech_news(amount):
     news_list = []
     next_page = "https://blog.betrybe.com/"

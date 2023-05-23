@@ -2,7 +2,7 @@ from tech_news.database import search_news
 from datetime import datetime
 
 
-# Requisito 7
+# Busca notícias no banco de dados que foram "raspadas" do site pelo título.
 def search_by_title(title):
     news_list = search_news({"title": {"$regex": title, "$options": "i"}})
     result = []
@@ -11,7 +11,7 @@ def search_by_title(title):
     return result
 
 
-# Requisito 8
+# Busca notícias no banco de dados pela data.
 def search_by_date(date):
     try:
         news_list = search_news({'timestamp': datetime.strptime(
@@ -24,7 +24,7 @@ def search_by_date(date):
         raise ValueError('Data inválida')
 
 
-# Requisito 9
+# Busca notícias no banco de dados pela categoria.
 def search_by_category(category):
     news_list = search_news({
         "category": {"$regex": category, "$options": "i"}})
